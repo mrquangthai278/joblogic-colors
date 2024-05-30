@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Just define for matching with Figma */
+.container {
+    @apply max-w-[650px];
+}
+
+/* Just import one type for demo */
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../fonts/Roboto-Black.ttf') format('woff2');
+}
