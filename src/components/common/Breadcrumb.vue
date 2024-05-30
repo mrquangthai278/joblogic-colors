@@ -1,10 +1,6 @@
- <template>
+<template>
   <div class="flex gap-2">
-    <div
-      v-for="(item, index) in data"
-      class="flex items-center gap-2"
-      :key="$kebabCase(item?.label)"
-    >
+    <div v-for="(item, index) in data" class="flex items-center gap-2" :key="$kebabCase(item?.label)">
       <template v-if="item?.to">
         <router-link :to="item.to">{{ item?.label }}</router-link>
       </template>
@@ -21,21 +17,17 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: "BreadcrumbCommon",
+<script lang="ts">
+import { Vue, Prop, Component } from 'vue-property-decorator';
 
-  props: {
-    data: {
-      type: Array,
-      default: () => [],
-      required: true,
-    },
+interface DataItem {
+  label: string;
+  to?: string
+}
 
-    seperator: {
-      type: String,
-      default: () => ">",
-    },
-  },
-};
+@Component
+export default class BreadcrumbCommon extends Vue {
+  @Prop({ type: Array, default: () => [], required: true }) data!: DataItem[];
+  @Prop({ type: String, default: '>' }) seperator!: string;
+}
 </script>
